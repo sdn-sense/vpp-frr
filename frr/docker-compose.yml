@@ -1,0 +1,13 @@
+version: '3'
+services:
+  frrouting:
+    image: frrouting/frr 
+    container_name: frr
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./frr:/etc/frr
+    network_mode: "none"
