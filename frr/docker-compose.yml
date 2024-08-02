@@ -1,8 +1,9 @@
 version: '3'
 services:
-  frrouting:
-    image: frrouting/frr 
-    container_name: frr
+  frr:
+    image: frrouting/frr
+    container_name: gateway_frr
+    restart: unless-stopped
     privileged: true
     cap_add:
       - NET_ADMIN
@@ -10,4 +11,6 @@ services:
     stdin_open: true
     volumes:
       - ./frr:/etc/frr
-    network_mode: "none"
+      # - ./frr/var/run/frr/:/var/run/frr/
+      - ./frr/var/log/:/var/log/
+    network_mode: none
