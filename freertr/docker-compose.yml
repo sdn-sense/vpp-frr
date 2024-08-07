@@ -1,0 +1,16 @@
+services:
+  freertr:
+    image: freertr/freertr:latest
+    container_name: freertr
+    build:
+      context: .
+      args:
+        - no-cache
+    privileged: true
+    network_mode: host
+    environment:
+      - FREERTR_INTF_LIST="0000:07:00.0 0000:0a:00.0"
+      - FREERTR_HOSTNAME=freertr
+    volumes:
+      - ./run:/opt/freertr/run
+      - /dev/hugepages:/dev/hugepages
