@@ -19,28 +19,3 @@ grep -q '^net.core.default_qdisc' /etc/sysctl.conf && sed -i 's/^net.core.defaul
 
 echo "Restarting sysctl"
 sysctl -p /etc/sysctl.conf
-
-
-echo "Setting MTU size to 9000, txqueuelen to 10000 for 192.168.*.* interfaces"
-for i in $( netstat -ie | grep -B1 '192.168.' | grep -v 'inet' | grep -v "[-]"  | awk '{print $1}' | tr -d ':' );
-do
-  echo  "Changing MTU for interface: $i ";
-  ip link set dev $i mtu 9000
-  echo  "Changing txqueuelen for interface: $i ";
-  ip link set dev $i txqueuelen 10000
-done
-
-echo "Other config for 192.168.*.* interfaces"
-for i in $( netstat -ie | grep -B1 '192.168.' | grep -v 'inet' | grep -v "[-]"  | awk '{print $1}' | tr -d ':' );
-do
-  echo "Changing dynamic control  to off for interface: $i ";
-  ethtool -C $i adaptive-rx off
-  echo "Setting interrupt coalescing";
-  ethtool -C $i rx-usecs 1000
-  echo  "Tune up receive (TX) and transmit (RX) buffers for interface: $i ";
-  MAX_RX=$(ethtool -g $i | grep 'RX:' | awk '{print $2}' | head -1)
-  MAX_TX=$(ethtool -g $i | grep 'TX:' | awk '{print $2}' | head -1)
-  echo  "Receive max (TX) $MAX_TX and transmit max (RX) $MAX_RX for interface: $i ";
-  ethtool -G $i rx $MAX_RX tx $MAX_TX
-done
-echo "Done changing parameters"
