@@ -1,0 +1,5 @@
+inventory:
+  frr_s0:
+    network_os: sense.frr.docker
+    container_name: frr
+    host: 2602:fcfb:1d:fff0::2
