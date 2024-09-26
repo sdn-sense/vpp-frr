@@ -1,0 +1,15 @@
+services:
+  xrootd-server:
+    image: "sdn-sense/xrootd-stageout-server:latest"
+    env_file:
+      - .env
+    cap_add:
+      - CAP_SETUID
+      - CAP_SETGID
+      - CAP_DAC_OVERRIDE
+    network: host
+    volumes:
+      - ${LOCAL_ROOT}:${LOCAL_ROOT}
+      - ./priv/xrootdcert.pem:${XRD_CERT}:ro
+      - ./priv/xrootdkey.pem:${XRD_KEY}:ro
+      - ./priv/macaroon-secret:/tmp/macaroon-secret:ro

@@ -1,0 +1,58 @@
+# Each group should have these parameters defined:
+#   name - groupname
+#   gid  - groupid (unique)
+# Each user can have these parameters defined:
+#   username    - username (mandatory)
+#   full_name   - Full Name (mandatory)
+#   expiry      - Expiry date (optional, default - none)
+#   email       - Email (mandatory)
+#   id          - This is used as UID and GID (mandatory, unique)
+#   dn          - User's used DNs (optional, array, default - none). This will be added to grid-mapfile
+#   voms        - User's voms role (optional, array, default - none). This wwill be added to voms-mapfile
+#   groups      - Which groups user belongs (optional, array, default - same as his username)
+# ================================================
+groups:
+  allcit:
+    name: 'allcit'
+    gid: 6666
+  cms:
+    name: 'cms'
+    gid: 7777
+
+users:
+  jbalcas:
+    username: jbalcas
+    full_name: Justas Balcas
+    email: jbalcas@es.net
+    id: 3000
+    expiry: '2029-01-01'
+    dn:
+      - '/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=jbalcas/CN=751133/CN=Justas Balcas'
+    groups:
+      - allcit
+      - cms
+  cmsuser:
+    username: cmsuser
+    full_name: Default cmsuser account
+    email: alerts@ultralight.org
+    id: 3001
+    voms:
+      - '/cms/*'
+    groups:
+      - allcit
+      - cms
+  glow:
+    username: glow
+    full_name: Default GLOW VO Pilot
+    email: alerts@ultralight.org
+    ignore2fa: true
+    id: 3002
+    subscribe_to_mailings: False
+    shell: /sbin/nologin
+    managehome: false
+    voms:
+      - '/GLOW/chtc/*'
+      - '/GLOW/Role=htpc/*'
+      - '/GLOW/*'
+    groups:
+      - allcit

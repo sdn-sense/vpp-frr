@@ -1,0 +1,14 @@
+"/cms/uscms/Role=cmsphedex/Capability=NULL" phedex
+"/cms/Role=cmsphedex/Capability=NULL" phedex
+"/cms/local/Role=pilot/Capability=NULL" cmslocal
+"/cms/Role=pilot/Capability=NULL" cmspilot
+"/cms/Role=production/Capability=NULL" cmsprod
+"/cms/Role=lcgadmin/Capability=NULL" lcgadmin
+"/cms/*" cmsuser
+"/fermilab/Role=pilot/Capability=NULL" fnalpilot
+"/osg/ligo/*" osgligo
+"/osg/*" osgpilot
+"/GLOW/chtc/*" glow
+"/GLOW/Role=htpc/*" glow
+"/GLOW/*" glow
+"/dteam/*" dteam

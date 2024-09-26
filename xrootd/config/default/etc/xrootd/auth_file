@@ -1,0 +1,35 @@
+# Define some rules for all known FS paths
+t writecmsdata /store/backfill          a  \
+               /store/data              a  \
+               /store/generator         a  \
+               /store/group             a  \
+               /store/hidata            a  \
+               /store/himc              a  \
+               /store/mc                a  \
+               /store/relval            a  \
+               /store/temp              a  \
+               /store/unmerged          a  \
+               /store/test/rucio        a  \
+               /store/test/loadtest     a
+
+t readcmsdata  /store                   lr
+
+# cmsprod and PhEDEx have full access to managed CMS data, and read
+u cmsprod writecmsdata readcmsdata
+u phedex writecmsdata readcmsdata
+
+# jbalcas anything on /
+u jbalcas / a
+
+# lcgadmin have read access and write into /store/unmerged/SAM
+u lcgadmin readcmsdata /store/unmerged/SAM a
+
+# DTEAM has read/write access to its own files under /store/user/dteam
+u dteam /store/user/dteam a
+
+# CMS users have full access to their own directory, and read for CMS
+# While xrootd allows the user to *attempt* any operation - even in other user's
+# home directories - the underlying filesystem also has its internal permissions and will further
+# limit things.
+g /cms /store/user a /store/temp/ a /store/group a readcmsdata
+u cmsuser / a
