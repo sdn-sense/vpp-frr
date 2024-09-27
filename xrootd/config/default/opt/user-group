@@ -31,28 +31,21 @@ users:
     groups:
       - allcit
       - cms
+  xrootd:
+    username: xrootd
+    full_name: XRootD Server
+    email: jbalcas@es.net
+    id: 2010
+    groups:
+      - allcit
+      - cms
   cmsuser:
     username: cmsuser
     full_name: Default cmsuser account
-    email: alerts@ultralight.org
+    email: jbalcas@es.net
     id: 3001
     voms:
       - '/cms/*'
     groups:
       - allcit
       - cms
-  glow:
-    username: glow
-    full_name: Default GLOW VO Pilot
-    email: alerts@ultralight.org
-    ignore2fa: true
-    id: 3002
-    subscribe_to_mailings: False
-    shell: /sbin/nologin
-    managehome: false
-    voms:
-      - '/GLOW/chtc/*'
-      - '/GLOW/Role=htpc/*'
-      - '/GLOW/*'
-    groups:
-      - allcit
