@@ -19,18 +19,18 @@ import yaml
 
 def runCmd(command):
     """Run command and print output"""
-    process = subprocess.Popen(command,stdout=subprocess.PIPE, shell=True)
-    stdout, stderr = process.communicate()
-    exitCode = process.wait()
-    if stdout:
-        for line in stdout.splitlines():
-            print(line.decode('utf-8'))
-    if stderr:
-        for line in stderr.splitlines():
-            print(line.decode('utf-8'))
-    if exitCode != 0:
-        print(f"Error while executing command: {command}")
-        sys.exit(1)
+    with subprocess.Popen(command,stdout=subprocess.PIPE, shell=True) as process:
+        stdout, stderr = process.communicate()
+        exitCode = process.wait()
+        if stdout:
+            for line in stdout.splitlines():
+                print(line.decode('utf-8'))
+        if stderr:
+            for line in stderr.splitlines():
+                print(line.decode('utf-8'))
+        if exitCode != 0:
+            print(f"Error while executing command: {command}")
+            sys.exit(1)
 
 
 def _moveVomsFile(filename, data):
@@ -57,7 +57,7 @@ def createVomsGridMap(users):
         return
     allvoms = {}
     allgrid = {}
-    for user, vals in users.items():
+    for _user, vals in users.items():
         if 'voms' in vals:
             for voms in vals['voms']:
                 if voms not in allvoms:
@@ -171,7 +171,10 @@ def run():
 
 
 if __name__ == "__main__":
-    while True:
+    if len(sys.argv) > 1 and sys.argv[1] == '--notimeout':
         run()
-        print("Sleeping for 3600 seconds")
-        time.sleep(3600)
+    else:
+        while True:
+            run()
+            print("Sleeping for 3600 seconds")
+            time.sleep(3600)
