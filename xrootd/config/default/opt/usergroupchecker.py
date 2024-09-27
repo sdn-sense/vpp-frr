@@ -152,6 +152,10 @@ def userCheck(username, vals):
 def run():
     """Main run"""
     allusersfile = os.environ.get('USER_MAP_FILE', None)
+    if not allusersfile:
+        print("USER_MAP_FILE not defined. Will try to use default")
+        # Use default if exists at the same dir as this file
+        allusersfile = os.path.join(os.path.dirname(os.path.realpath(__file__)), "user-group")
     if not os.path.isfile(allusersfile):
         print(f"File {allusersfile} not found")
         return

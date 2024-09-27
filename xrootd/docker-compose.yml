@@ -1,13 +1,13 @@
 services:
   xrootd-server:
-    image: "sdn-sense/xrootd-stageout-server:latest"
+    image: "sdnsense/xrootd-stageout-server:latest"
     env_file:
       - .env
     cap_add:
       - CAP_SETUID
       - CAP_SETGID
       - CAP_DAC_OVERRIDE
-    network: host
+    network_mode: host
     volumes:
       - ${LOCAL_ROOT}:${LOCAL_ROOT}
       - ./priv/xrootdcert.pem:${XRD_CERT}:ro

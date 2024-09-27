@@ -21,9 +21,9 @@ RUN curl -OL https://github.com/prometheus/node_exporter/releases/download/v1.7.
 # User creation scripts
 RUN mkdir -p /opt/usergroups && mkdir -p /opt/scripts/
 ADD config/default/opt/user-group /opt/usergroups/user-group
-ADD config/default/opt/usergroupchecker.py /opt/usergroupchecker.py
+ADD config/default/opt/usergroupchecker.py /opt/scripts/usergroupchecker.py
 ADD config/default/etc/supervisord.d/11-usergroupchecker.conf /etc/supervisord.d/11-usergroupchecker.conf
-RUN chmod +x /opt/usergroupchecker.py
+RUN chmod +x /opt/scripts/usergroupchecker.py
 
 # Install custom monitoring
 RUN pip3 install prometheus_client flask
