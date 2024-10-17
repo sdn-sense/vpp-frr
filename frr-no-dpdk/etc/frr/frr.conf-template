@@ -1,0 +1,11 @@
+!
+frr version 8.4_git
+frr defaults traditional
+hostname REPLACEME_HOSTNAME
+service integrated-vtysh-config
+log file /var/log/frr/bgpd.log informational
+log stdout
+!
+router bgp REPLACEME_ASN
+!
+end
