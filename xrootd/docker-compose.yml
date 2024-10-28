@@ -12,4 +12,4 @@ services:
       - ${LOCAL_ROOT}:${LOCAL_ROOT}
       - ./priv/xrootdcert.pem:${XRD_CERT}:ro
       - ./priv/xrootdkey.pem:${XRD_KEY}:ro
-      - ./priv/macaroon-secret:/tmp/macaroon-secret:ro
+      - ./priv/macaroon-secret:/etc/xrootd/macaroon-secret:ro

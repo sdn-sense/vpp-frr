@@ -1,17 +1,18 @@
 services:
   vpp:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    image: vpp
+    container_name: vpp
     restart: unless-stopped
     pid: host
     privileged: true
+    cap_add:
+      - ALL
     volumes:
+      - /dev/hugepages:/dev/hugepages
       - /var/run/netns/:/var/run/netns/
       - ./etc/vpp/startup.conf:/etc/vpp/startup.conf
-      #- ./etc/vpp/startup.gate:/etc/vpp/startup.gate
+      - ./etc/vpp/startup.gate:/etc/vpp/startup.gate
       - ./run/vpp/:/run/vpp/
       - ./var/log/vpp/:/var/log/vpp/
       - ./run.sh:/root/run.sh
-    command: /root/run.sh
     network_mode: host

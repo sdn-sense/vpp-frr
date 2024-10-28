@@ -1,16 +1,12 @@
-version: '3'
 services:
   frr:
     image: frrouting/frr
-    container_name: gateway_frr
-    restart: unless-stopped
+    container_name: frr
+    network_mode: "host"
     privileged: true
     cap_add:
-      - NET_ADMIN
-    tty: true
-    stdin_open: true
+      - ALL
     volumes:
-      - ./frr:/etc/frr
-      # - ./frr/var/run/frr/:/var/run/frr/
-      - ./frr/var/log/:/var/log/
-    network_mode: none
+      - ./etc/frr/daemons:/etc/frr/daemons
+      - ./etc/frr/frr.conf:/etc/frr/frr.conf
+      - ./etc/frr/vtysh.conf:/etc/frr/vtysh.conf
