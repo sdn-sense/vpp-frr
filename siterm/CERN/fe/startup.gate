@@ -1,27 +1,35 @@
 comment { LAN interface }
 set interface state Ethernet1/0/0 up
+set interface mtu packet 9000 Ethernet1/0/0
+set interface feature gso Ethernet1/0/0 enable
 lcp create Ethernet1/0/0 host-if e1
 
 comment { LAN SUB interface }
 create sub-interfaces Ethernet1/0/0 100
 set interface state Ethernet1/0/0.100 up
+set interface feature gso Ethernet1/0/0.100 enable
 set interface ip address Ethernet1/0/0.100 2602:fcfb:1d:fff1::1/64
 
 comment { LAN SUB interface }
 create sub-interfaces Ethernet1/0/0 101
 set interface state Ethernet1/0/0.101 up
+set interface feature gso Ethernet1/0/0.101 enable
 set interface ip address Ethernet1/0/0.101 2602:fcfb:1d:fff2::1/64
 
 comment { LAN SUB interface }
 create sub-interfaces Ethernet1/0/0 102
 set interface state Ethernet1/0/0.102 up
+set interface feature gso Ethernet1/0/0.102 enable
 set interface ip address Ethernet1/0/0.102 2602:fcfb:1d:fff3::1/64
 
 comment { WAN interface }
 set interface state Ethernet2/0/0 up
+set interface mtu packet 9000 Ethernet2/0/0
+set interface feature gso Ethernet2/0/0 enable
 lcp create Ethernet2/0/0 host-if e2
 
 comment { WAN SUB interface }
 create sub-interfaces Ethernet2/0/0 99
 set interface state Ethernet2/0/0.99 up
+set interface feature gso Ethernet2/0/0.99 enable
 set interface ip address Ethernet2/0/0.99 2602:fcfb:1d:fff0::2/64
