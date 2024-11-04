@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
                 iproute2 \
                 iputils-ping \
                 python3-pip \
-                supervisor && rm -rf /var/lib/apt/lists/*
+                supervisor ethtool && rm -rf /var/lib/apt/lists/*
 
 
 WORKDIR /vpp
