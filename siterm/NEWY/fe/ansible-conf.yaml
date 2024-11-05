@@ -1,0 +1,7 @@
+inventory:
+    frr_s0:
+        network_os: sense.frr.frr
+        host: 2602:fcfb:13:fff0::2
+        user: ubuntu
+        sshkey: /opt/siterm/config/ssh-keys/frrsshkey
+        become: 0
