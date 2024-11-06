@@ -33,3 +33,15 @@ create sub-interfaces Ethernet2/0/0 99
 set interface state Ethernet2/0/0.99 up
 set interface feature gso Ethernet2/0/0.99 enable
 set interface ip address Ethernet2/0/0.99 2602:fcfb:1d:fff0::2/64
+
+comment { WAN interface 1 }
+set interface state Ethernet3/0/0 up
+set interface mtu packet 9216 Ethernet3/0/0
+set interface feature gso Ethernet3/0/0 enable
+lcp create Ethernet3/0/0 host-if e3
+
+comment { WAN interface 2 }
+set interface state Ethernet4/0/0 up
+set interface mtu packet 9216 Ethernet4/0/0
+set interface feature gso Ethernet4/0/0 enable
+lcp create Ethernet4/0/0 host-if e4
