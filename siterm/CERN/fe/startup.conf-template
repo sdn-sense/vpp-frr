@@ -62,6 +62,7 @@ plugins {
    plugin dpdk_plugin.so { enable }
    plugin ping_plugin.so { enable }
    plugin linux_cp_plugin.so { enable }
+   plugin linux_nl_plugin.so { enable }
 }
 
 logging {
