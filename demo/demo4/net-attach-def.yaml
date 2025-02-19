@@ -1,0 +1,63 @@
+# kubectl apply -f net-attach-def.yaml --kubeconfig ~/.kube/config-ucsd
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: cernfabricfff2
+  namespace: opennsa
+spec:
+  config: '{
+    "cniVersion": "0.3.1",
+    "name": "cernfabricfff2",
+    "plugins": [
+        {"name": "cernfabricfff2",
+         "type": "macvlan",
+         "master": "vlan.2074",
+         "mode": "bridge",
+         "isDefaultGateway": false,
+         "forceAddress": false,
+         "ipMasq": false,
+         "hairpinMode": false,
+         "ipam": {
+              "type": "static",
+              "subnet": "2602:fcfb:1d:fff2::0/64",
+              "rangeStart": "2602:fcfb:001d:fff2:0000:0000:0000:0000",
+              "rangeEnd": "2605:fcfb:0001d:fff2:ffff:ffff:ffff:ffff",
+              "gateway": "2602:fcfb:1d:fff2::1",
+              "routes": [{"dst": "::/0", "gw": "2602:fcfb:1d:fff2::1"}]
+             }
+        },
+        { "type": "tuning", "sysctl": { "net.ipv6.conf.net1.autoconf": "0", "net.ipv6.conf.net1.accept_ra": "0" } }
+    ]
+  }'
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: cernfabricfff3
+  namespace: opennsa
+spec:
+  config: '{
+    "cniVersion": "0.3.1",
+    "name": "cernfabricfff3",
+    "plugins": [
+        {"name": "cernfabricfff3",
+         "type": "macvlan",
+         "master": "vlan.2078",
+         "mode": "bridge",
+         "isDefaultGateway": false,
+         "forceAddress": false,
+         "ipMasq": false,
+         "hairpinMode": false,
+         "ipam": {
+              "type": "static",
+              "subnet": "2602:fcfb:1d:fff3::0/64",
+              "rangeStart": "2602:fcfb:001d:fff3:0000:0000:0000:0000",
+              "rangeEnd": "2605:fcfb:001d:fff3:ffff:ffff:ffff:ffff",
+              "gateway": "2602:fcfb:1d:fff3::1",
+              "routes": [{"dst": "::/0", "gw": "2602:fcfb:1d:fff3::1"}]
+             }
+        },
+        { "type": "tuning", "sysctl": { "net.ipv6.conf.net1.autoconf": "0", "net.ipv6.conf.net1.accept_ra": "0" } }
+    ]
+  }'

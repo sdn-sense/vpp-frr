@@ -1,0 +1,70 @@
+#kubectl apply -f pod.yaml --kubeconfig ~/.kube/config-ucsd
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-fabric-testfff2
+  namespace: opennsa
+  annotations:
+    k8s.v1.cni.cncf.io/networks: '[{"gateway":["2602:fcfb:1d:fff2::1"],"ips":["2602:fcfb:1d:fff2::a/64"],"mac":"fa:f7:ce:f1:2e:6c","name":"cernfabricfff2"}]'
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: ucsd-nrp.cern.ch
+  tolerations:
+    - key: "nautilus.io/sense"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+  containers:
+    - name: ubuntu-fabric-testfff2
+      image: ubuntu:latest
+      command: ["/bin/bash", "-c", "sleep infinity"]
+      resources:
+        limits:
+          memory: "4G"
+          cpu: "4"
+        requests:
+          memory: "1G"
+          cpu: "1"
+      env:
+        - name: DEBIAN_FRONTEND
+          value: "noninteractive"
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh", "-c", "apt update && apt install -y iputils-ping traceroute openjdk-17-jre iproute2 wget iputils-tracepath && wget http://monalisa.cern.ch/FDT/lib/fdt.jar"]
+---
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-fabric-testfff3
+  namespace: opennsa
+  annotations:
+    k8s.v1.cni.cncf.io/networks: '[{"gateway":["2602:fcfb:1d:fff3::1"],"ips":["2602:fcfb:1d:fff3::a/64"],"mac":"fb:f2:cb:f2:2a:6d","name":"cernfabricfff3"}]'
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: ucsd-nrp.cern.ch
+  tolerations:
+    - key: "nautilus.io/sense"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+  containers:
+    - name: ubuntu-fabric-testfff3
+      image: ubuntu:latest
+      command: ["/bin/bash", "-c", "sleep infinity"]
+      resources:
+        limits:
+          memory: "4G"
+          cpu: "4"
+        requests:
+          memory: "1G"
+          cpu: "1"
+      env:
+        - name: DEBIAN_FRONTEND
+          value: "noninteractive"
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh", "-c", "apt update && apt install -y iputils-ping traceroute openjdk-17-jre iproute2 wget iputils-tracepath && wget http://monalisa.cern.ch/FDT/lib/fdt.jar"]
