@@ -3,10 +3,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ubuntu-fabric-testfff1
+  name: ubuntu-fabric-test-l2cern
   namespace: opennsa
   annotations:
-    k8s.v1.cni.cncf.io/networks: '[{"gateway":["2602:fcfb:1d:fff1::1"],"ips":["2602:fcfb:1d:fff1::a/64"],"mac":"fc:f1:c1:f2:3e:4c","name":"cernfabricfff1"}]'
+    k8s.v1.cni.cncf.io/networks: '[{ "name": "sensefabricdemo2cern", "ips": ["10.1.11.51/24"], "gateway": ["10.1.11.1"] }]'
 spec:
   nodeSelector:
     kubernetes.io/hostname: ucsd-nrp.cern.ch
@@ -16,7 +16,7 @@ spec:
       value: "true"
       effect: "NoSchedule"
   containers:
-    - name: ubuntu-fabric-testfff1
+    - name: ubuntu-fabric-test
       image: ubuntu:latest
       command: ["/bin/bash", "-c", "sleep infinity"]
       resources:
@@ -37,54 +37,20 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ubuntu-fabric-testfff2
+  name: ubuntu-fabric-test-l2sdsc
   namespace: opennsa
   annotations:
-    k8s.v1.cni.cncf.io/networks: '[{"gateway":["2602:fcfb:1d:fff2::1"],"ips":["2602:fcfb:1d:fff2::a/64"],"mac":"fa:f7:ce:f1:2e:6c","name":"cernfabricfff2"}]'
+    k8s.v1.cni.cncf.io/networks: '[{ "name": "sensefabricdemo2sdsc", "ips": ["10.1.11.52/24"], "gateway": ["10.1.11.1"] }]'
 spec:
   nodeSelector:
-    kubernetes.io/hostname: ucsd-nrp.cern.ch
+    kubernetes.io/hostname: k8s-gen5-01.sdsc.optiputer.net
   tolerations:
     - key: "nautilus.io/sense"
       operator: "Equal"
       value: "true"
       effect: "NoSchedule"
   containers:
-    - name: ubuntu-fabric-testfff2
-      image: ubuntu:latest
-      command: ["/bin/bash", "-c", "sleep infinity"]
-      resources:
-        limits:
-          memory: "4G"
-          cpu: "4"
-        requests:
-          memory: "1G"
-          cpu: "1"
-      env:
-        - name: DEBIAN_FRONTEND
-          value: "noninteractive"
-      lifecycle:
-        postStart:
-          exec:
-            command: ["/bin/sh", "-c", "apt update && apt install -y iputils-ping traceroute openjdk-17-jre iproute2 wget iputils-tracepath && wget http://monalisa.cern.ch/FDT/lib/fdt.jar"]
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: ubuntu-fabric-testfff3
-  namespace: opennsa
-  annotations:
-    k8s.v1.cni.cncf.io/networks: '[{"gateway":["2602:fcfb:1d:fff3::1"],"ips":["2602:fcfb:1d:fff3::b/64"], "name":"cernfabricfff3"}]'
-spec:
-  nodeSelector:
-    kubernetes.io/hostname: ucsd-nrp.cern.ch
-  tolerations:
-    - key: "nautilus.io/sense"
-      operator: "Equal"
-      value: "true"
-      effect: "NoSchedule"
-  containers:
-    - name: ubuntu-fabric-testfff3
+    - name: ubuntu-fabric-test1
       image: ubuntu:latest
       command: ["/bin/bash", "-c", "sleep infinity"]
       resources:

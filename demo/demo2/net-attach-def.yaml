@@ -1,0 +1,46 @@
+# kubectl apply -f net-attach-def.yaml --kubeconfig ~/.kube/config-ucsd
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: sensefabricdemo2sdsc
+  namespace: opennsa
+spec:
+  config: '{"cniVersion": "0.3.1", "name": "sensefabricdemo2sdsc",
+            "plugins": [ {"name": "sensefabricdemo2sdsc",
+                          "type": "macvlan", 
+                          "master": "vlan.1794",
+                          "mode": "bridge",
+                          "isDefaultGateway": false,
+                          "forceAddress": false,
+                          "ipMasq": false,
+                          "hairpinMode": false,
+                          "ipam": {
+                              "type": "host-local",
+                              "subnet": "10.1.11.0/24",
+                              "rangeStart": "10.1.11.10",
+                              "rangeEnd": "10.1.11.255"
+}}]}'
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: sensefabricdemo2cern
+  namespace: opennsa
+spec:
+  config: '{"cniVersion": "0.3.1", "name": "sensefabricdemo2cern",
+            "plugins": [ {"name": "sensefabricdemo2cern",
+                          "type": "macvlan",
+                          "master": "vlan.2072",
+                          "mode": "bridge",
+                          "isDefaultGateway": false,
+                          "forceAddress": false,
+                          "ipMasq": false,
+                          "hairpinMode": false,
+                          "ipam": {
+                              "type": "host-local",
+                              "subnet": "10.1.11.0/24",
+                              "rangeStart": "10.1.11.10",
+                              "rangeEnd": "10.1.11.255"
+}}]}'
+
