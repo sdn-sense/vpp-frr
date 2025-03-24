@@ -1,6 +1,10 @@
 echo 4096 | sudo tee /proc/sys/vm/nr_hugepages
 echo 24 | sudo tee /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages
 
+
+# Make sure core dumps saved inside /tmp (faced segfaults in VPP)
+echo '/tmp/core.%e.%p' | sudo tee /proc/sys/kernel/core_pattern
+
 # 2M hugepages
 HUGE_DIR="/mnt/huge"
 

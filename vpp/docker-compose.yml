@@ -19,4 +19,8 @@ services:
       - ./var/log/vpp/:/var/log/vpp/
       - ./root/run.sh:/root/run.sh
       - ./root/run-routeadd.sh:/root/run-routeadd.sh
+      - /tmp/:/tmp/
     network_mode: host
+    init: true
+    ulimits:
+      core: -1
