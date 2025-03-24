@@ -19,5 +19,6 @@ RUN mkdir -p /var/log/vpp
 COPY etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY run.sh /root/run.sh
 COPY run-monitoring.sh /root/run-monitoring.sh
+COPY run-routeadd.sh /root/run-routeadd.sh
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

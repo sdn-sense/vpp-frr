@@ -17,5 +17,6 @@ services:
       - ./etc/vpp/:/etc/vpp/
       - ./run/vpp/:/run/vpp/
       - ./var/log/vpp/:/var/log/vpp/
-      - ./run.sh:/root/run.sh
+      - ./root/run.sh:/root/run.sh
+      - ./root/run-routeadd.sh:/root/run-routeadd.sh
     network_mode: host

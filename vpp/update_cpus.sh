@@ -2,7 +2,7 @@
 ENV_FILE="env"
 
 TOTAL_CORES=$(nproc)
-USABLE_CORES=$((TOTAL_CORES - 2))
+USABLE_CORES=$((TOTAL_CORES - 3))
 
 if [ "$USABLE_CORES" -lt 2 ]; then
     echo "Error: Not enough cores available (Min 2 are needed)."
