@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y vpp vpp-plugin-core vpp-plugin-devtools
 RUN mkdir -p /var/log/vpp
 
 COPY etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY run.sh /root/run.sh
-COPY run-monitoring.sh /root/run-monitoring.sh
-COPY run-routeadd.sh /root/run-routeadd.sh
+COPY root/run.sh /root/run.sh
+COPY root/run-monitoring.sh /root/run-monitoring.sh
+COPY root/run-routeadd.sh /root/run-routeadd.sh
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
