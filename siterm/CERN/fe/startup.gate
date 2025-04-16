@@ -29,19 +29,19 @@ set interface feature gso Ethernet4/0/0 enable
 lcp create Ethernet4/0/0 host-if e4
 
 comment { NRP SUB interface }
-create sub-interfaces Ethernet2/0/0 988
-set interface state Ethernet2/0/0.988 up
-set interface feature gso Ethernet2/0/0.988 enable
-set interface ip address Ethernet2/0/0.988 2602:fcfb:1d:fff1::1/64
+create sub-interfaces Ethernet2/0/0 844
+set interface state Ethernet2/0/0.844 up
+set interface feature gso Ethernet2/0/0.844 enable
+set interface ip address Ethernet2/0/0.844 2602:fcfb:1d:fff1::1/64
 
 comment { NRP SUB interface }
-create sub-interfaces Ethernet3/0/0 848
-set interface state Ethernet3/0/0.848 up
-set interface feature gso Ethernet3/0/0.848 enable
-set interface ip address Ethernet3/0/0.848 2602:fcfb:1d:fff2::1/64
+create sub-interfaces Ethernet3/0/0 915
+set interface state Ethernet3/0/0.915 up
+set interface feature gso Ethernet3/0/0.915 enable
+set interface ip address Ethernet3/0/0.915 2602:fcfb:1d:fff2::1/64
 
 comment { NRP SUB interface }
-create sub-interfaces Ethernet4/0/0 953
-set interface state Ethernet4/0/0.953 up
-set interface feature gso Ethernet4/0/0.953 enable
-set interface ip address Ethernet4/0/0.953 2602:fcfb:1d:fff3::1/64
+create sub-interfaces Ethernet4/0/0 810
+set interface state Ethernet4/0/0.810 up
+set interface feature gso Ethernet4/0/0.810 enable
+set interface ip address Ethernet4/0/0.810 2602:fcfb:1d:fff3::1/64
